@@ -14,6 +14,13 @@ const nextConfig: NextConfig = {
   pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
 }
 
-const withMDX = createMDX()
+const withMDX = createMDX({
+  options: {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    remarkPlugins: [['remark-gfm', { strict: true, throwOnError: true }]],
+    rehypePlugins: [],
+  },
+})
 
 export default withMDX(nextConfig)

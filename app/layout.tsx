@@ -4,6 +4,7 @@ import { PostHogProvider } from '@/lib/posthog-provider'
 import './globals.css'
 
 import Footer from '@/components/footer'
+import NavigationMenu from '@/components/navigation-menu'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,7 +33,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <div className="flex min-h-screen flex-col">
-            {/*<NavigationMenu />*/}
+            <NavigationMenu />
             <div className="z-[1] flex-1">{children}</div>
             <Footer />
           </div>
