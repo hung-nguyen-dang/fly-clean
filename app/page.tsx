@@ -1,103 +1,149 @@
-import Image from "next/image";
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { Phone } from 'lucide-react'
+import posthog from 'posthog-js'
+import { Button } from '@/components/ui/button'
+
+// import { services } from './data'
+import { formatPricing } from '@/lib/utils'
+
+console.log(`APP_VERSION: ${process.env.APP_VERSION}`)
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const handleTrackCta = (ctaType: string) => () => {
+    posthog.capture('contact_us_clicked', { ctaType })
+  }
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative flex h-[600px] items-center">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/fly-clean.jpeg?height=600&width=1200"
+            alt="Clean modern living room"
+            fill
+            className="object-cover brightness-75"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50" />
+          <div className="absolute bottom-0 h-24 w-full origin-bottom-right translate-y-24 skew-y-3 transform bg-white" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="mb-4 text-5xl font-bold text-white md:text-6xl">
+            Fly Clean
+          </h1>
+          <p className="mb-8 text-xl text-white md:text-2xl">
+            Vệ Sinh Chuyên Sâu – Tiêu Chuẩn Cao – Giá Cạnh Tranh!
+          </p>
+          <Button
+            onClick={handleTrackCta('hero')}
+            size="lg"
+            className="px-8 py-6 text-lg"
+          >
+            <Link href="#services">Xem các dịch vụ</Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="overview" className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+            <div className="flex flex-col gap-6">
+              <h3 className="text-primary text-3xl font-medium tracking-wider uppercase">
+                Fly Clean
+              </h3>
+              <p className="leading-relaxed text-gray-600">
+                Cung cấp dịch vụ vệ sinh chuyên nghiệp hàng đầu tại TP. Hồ Chí
+                Minh, Việt Nam. Chúng tôi tự hào mang đến giải pháp vệ sinh kỹ
+                lưỡng và đáng tin cậy, đáp ứng mọi nhu cầu của bạn. Dù là tổng
+                vệ sinh một lần hay bảo trì định kỳ, đội ngũ tận tâm của chúng
+                tôi luôn sử dụng kỹ thuật và thiết bị hiện đại để đảm bảo không
+                gian của bạn sạch sẽ như mới. Trải nghiệm sự khác biệt cùng Fly
+                – nơi chất lượng và sự hài lòng của khách hàng luôn được đặt lên
+                hàng đầu.
+              </p>
+              <Link href="tel:0906865780">
+                <Button onClick={handleTrackCta('overview')}>
+                  Đặt lịch ngay!
+                </Button>
+              </Link>
+            </div>
+            <div className="relative h-[400px]">
+              <Image
+                src="/services.jpeg?height=400&width=500"
+                alt="Cleaning tools"
+                fill
+                className="rounded-lg object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Cards */}
+      <section id="services" className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="mb-12 text-center text-3xl font-bold">
+            Các dịch vụ của chúng tôi
+          </h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/*{services.map(({ summary, id }, index) => (*/}
+            {/*  <Link*/}
+            {/*    key={index}*/}
+            {/*    className="transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-transform hover:scale-105"*/}
+            {/*    href={`/dich-vu/${id}`}*/}
+            {/*  >*/}
+            {/*    <div className="relative h-48">*/}
+            {/*      <Image*/}
+            {/*        src={summary.image || '/placeholder.svg'}*/}
+            {/*        alt={summary.title}*/}
+            {/*        fill*/}
+            {/*        className="object-cover"*/}
+            {/*      />*/}
+            {/*    </div>*/}
+            {/*    <div className="p-6">*/}
+            {/*      <h3 className="mb-2 text-xl font-bold">{summary.title}</h3>*/}
+            {/*      <p className="mb-4 text-gray-600">{summary.description}</p>*/}
+            {/*      {summary.minPrice ? (*/}
+            {/*        <p className="text-primary">*/}
+            {/*          Từ {formatPricing(summary.minPrice)}*/}
+            {/*        </p>*/}
+            {/*      ) : null}*/}
+            {/*    </div>*/}
+            {/*  </Link>*/}
+            {/*))}*/}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-primary py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-primary-foreground mb-6 text-3xl font-bold">
+            Sẵn sàng cho một không gian sạch hơn?
+          </h2>
+          <p className="text-primary-foreground mx-auto mb-8 max-w-2xl text-lg">
+            Liên hệ với chúng tôi ngay hôm nay để đặt lịch vệ sinh. Chúng tôi
+            cung cấp báo giá miễn phí và lịch trình linh hoạt!
+          </p>
+          <div className="flex flex-col items-center gap-4">
+            <Link href="tel:0906865780">
+              <Button
+                onClick={handleTrackCta('cta')}
+                className="bg-primary-foreground text-primary hover:text-primary hover:bg-primary-foreground/90 flex gap-2 py-2"
+              >
+                <Phone />
+                <p>Liên hệ</p>
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
 }
