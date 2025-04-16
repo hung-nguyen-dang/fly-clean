@@ -7,7 +7,7 @@ import posthog from 'posthog-js'
 import { Button } from '@/components/ui/button'
 
 // import { services } from './data'
-import { formatPricing } from '@/lib/utils'
+// import { formatPricing } from '@/lib/utils'
 
 console.log(`APP_VERSION: ${process.env.APP_VERSION}`)
 
