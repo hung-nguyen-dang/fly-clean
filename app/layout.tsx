@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { PostHogProvider } from '@/lib/posthog-provider'
 import './globals.css'
 
+import Footer from '@/components/footer'
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -29,7 +31,11 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          {children}
+          <div className="flex min-h-screen flex-col">
+            {/*<NavigationMenu />*/}
+            <div className="z-[1] flex-1">{children}</div>
+            <Footer />
+          </div>
         </body>
       </PostHogProvider>
     </html>
