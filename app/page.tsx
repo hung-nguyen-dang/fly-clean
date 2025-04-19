@@ -5,9 +5,7 @@ import Link from 'next/link'
 import { Phone } from 'lucide-react'
 import posthog from 'posthog-js'
 import { Button } from '@/components/ui/button'
-
-// import { services } from './data'
-// import { formatPricing } from '@/lib/utils'
+import ServiceCard from '@/components/service-card'
 
 console.log(`APP_VERSION: ${process.env.APP_VERSION}`)
 
@@ -92,31 +90,13 @@ export default function Home() {
             Các dịch vụ của chúng tôi
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/*{services.map(({ summary, id }, index) => (*/}
-            {/*  <Link*/}
-            {/*    key={index}*/}
-            {/*    className="transform cursor-pointer overflow-hidden rounded-lg bg-white shadow-md transition-transform hover:scale-105"*/}
-            {/*    href={`/dich-vu/${id}`}*/}
-            {/*  >*/}
-            {/*    <div className="relative h-48">*/}
-            {/*      <Image*/}
-            {/*        src={summary.image || '/placeholder.svg'}*/}
-            {/*        alt={summary.title}*/}
-            {/*        fill*/}
-            {/*        className="object-cover"*/}
-            {/*      />*/}
-            {/*    </div>*/}
-            {/*    <div className="p-6">*/}
-            {/*      <h3 className="mb-2 text-xl font-bold">{summary.title}</h3>*/}
-            {/*      <p className="mb-4 text-gray-600">{summary.description}</p>*/}
-            {/*      {summary.minPrice ? (*/}
-            {/*        <p className="text-primary">*/}
-            {/*          Từ {formatPricing(summary.minPrice)}*/}
-            {/*        </p>*/}
-            {/*      ) : null}*/}
-            {/*    </div>*/}
-            {/*  </Link>*/}
-            {/*))}*/}
+            <ServiceCard
+              href="/dich-vu/giat-ghe-van-phong"
+              name="Giặt ghế văn phòng"
+              description=""
+              price="Từ 15.000đ"
+              imageUrl="/chairs.jpeg"
+            />
           </div>
         </div>
       </section>
