@@ -1,31 +1,37 @@
+import Table from '../../../components/mdx/table'
+import Column from "../../../components/mdx/column";
+
 # Giặt ghế văn phòng
 
-<div className="flex flex-wrap gap-12">
-  <div>
-    ## Ghế xoay
-    | Số lượng     | Đơn giá  |
-    |--------------|----------|
-    | Dưới 20 ghế  | 35.000đ  |
-    | 20-50 ghế    | 25.000 ₫ |
-    | 50-100 ghế   | 20.000 ₫ |
-    | Trên 100 ghế | 15.000 ₫ |
-  </div>
+<Column columns={3}>
+  <Table
+    title="Ghế xoay"
+    columns={['Số lượng', 'Đơn giá']}
+    rows={[
+      ['Dưới 20 ghế', '35.000đ'],
+      ['20-50 ghế', '25.000đ'],
+      ['50-100 ghế', '20.000 ₫'],
+      ['Trên 100 ghế', '15.000 ₫']
+    ]}
+  />
 
-  <div>
-    ## Ghế chân quỳ
-    | Số lượng     | Đơn giá  |
-    |--------------|----------|
-    | Dưới 20 ghế  | 35.000đ  |
-    | 20-50 ghế    | 30.000 ₫ |
-    | 50-100 ghế   | 20.000 ₫ |
-    | Trên 100 ghế | 15.000 ₫ |
-  </div>
+  <Table
+    title="Ghế chân quỳ"
+    columns={['Số lượng', 'Đơn giá']}
+    rows={[
+      ['Dưới 20 ghế', '35.000đ'],
+      ['20-50 ghế', '30.000 ₫'],
+      ['50-100 ghế', '20.000 ₫'],
+      ['Trên 100 ghế', '15.000 ₫']
+    ]}
+  />
 
-  <div>
-    ## Ghế giám đốc
-    | Số lượng | Đơn giá   |
-    |----------|-----------|
-    | 1 ghế    | 195.000đ  |
-    | 2 ghế    | 145.000 ₫ |
-  </div>
-</div>
+  <Table
+    title="Ghế giám đốc"
+    columns={['Số lượng', 'Đơn giá']}
+    rows={[
+      ['1 ghế', '195.000đ'],
+      ['2 ghế', '145.000₫'],
+    ]}
+  />
+</Column>
